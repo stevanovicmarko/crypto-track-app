@@ -10,14 +10,14 @@ html, body {
 body {
   display: flex;
   min-height: 100vh;
-  margin: 0;
+  margin: 0 auto;
 }
 
 #root {
   margin: auto;
-  box-sizing: border-box;
-  flex-direction: row;
-  text-align: center;
   display: flex;
-  justify-content: center;
+  box-sizing: border-box;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
 }

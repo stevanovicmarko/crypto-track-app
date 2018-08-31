@@ -1,0 +1,33 @@
+@import "../sharedStyles/colors";
+
+.pager-container {
+  display: flex;
+  margin-top: 10px;
+  background-color: $light-gray;
+  border-radius: 3px;
+  color: $text-color;
+  font-size: 0.9em;
+
+  .pager-button {
+    padding: 4px 10px;
+    background-color: $app-background;
+    margin: 4px 2px;
+
+    &:first-child {
+      margin-left: 4px;
+    }
+
+    &:last-child {
+      margin-right: 4px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  .active-page {
+    background-color: $light-gray;
+  }
+}

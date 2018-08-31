@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 import history from './history';
@@ -17,8 +17,9 @@ class App extends PureComponent {
     return (
       <Router history={history}>
         <Switch>
-          <Route exact path="/" component={CryptoTable} />
+          <Route exact path="/:page" component={CryptoTable} />
           <Route path="/details/:id" component={Details} />
+          <Redirect from="/" exact to="/1" />
         </Switch>
       </Router>
     );
