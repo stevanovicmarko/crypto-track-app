@@ -1,7 +1,9 @@
 @import "sharedStyles/colors";
 
+$font-stack: -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, "Segoe UI", "Google Sans", "Product Sans", Ubuntu, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
 html, body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Google Sans", "Product Sans", Ubuntu, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: $font-stack;
   background-color: $app-background;
 }
 
@@ -14,6 +16,7 @@ body {
 #root {
   margin: auto;
   box-sizing: border-box;
+  flex-direction: row;
   text-align: center;
   display: flex;
   justify-content: center;

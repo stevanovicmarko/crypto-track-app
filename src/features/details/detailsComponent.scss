@@ -1,0 +1,44 @@
+@import '../../sharedStyles/colors';
+
+.details-container {
+  border: 2px solid $light-gray;
+  .details-table {
+    background-color: $light-gray;
+    table-layout: fixed;
+    font-size: 0.9em;
+    border-collapse: collapse;
+    color: $text-color;
+
+    caption {
+      font-size: 1.5em;
+      font-weight: bold;
+      padding: 5px;
+
+    }
+
+    th,
+    td {
+      margin: 5px 15px;
+      padding: 10px 20px;
+      border: 2px solid $app-background;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    td {
+      text-align: right;
+    }
+
+    tbody {
+      tr:nth-child(even) {
+        background-color: $app-background;
+      }
+
+      tr:nth-child(odd) {
+        background-color: $light-gray;
+      }
+    }
+  }
+}
