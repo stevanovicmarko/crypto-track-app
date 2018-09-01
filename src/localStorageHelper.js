@@ -13,11 +13,13 @@ class LocalStorage {
         this.entries = entries;
     }
 
-    getInputValueForId = id => this.entries[id];
+    getInputValueForId = id => this.entries[id] ||Object.create(null);
 
 
-    storeIdAndInputValue = (id, inputValue) => {
-        this.entries[id] = inputValue;
+    storeIdAndInputValue = (id, amountOfCurrency, oldCurrencyValue) => {
+        this.entries[id] = Object.create(null);
+        this.entries[id].amountOfCurrency = amountOfCurrency;
+        this.entries[id].oldCurrencyValue = oldCurrencyValue;
         localStorage.setItem(ENTRIES_KEY, JSON.stringify(this.entries));
     };
 }

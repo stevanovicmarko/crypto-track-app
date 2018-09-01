@@ -5,7 +5,7 @@ import TableComponent from './tableComponent';
 import './tableComponent.scss';
 import Error from '../../utilityComponents/error';
 import * as Api from '../../api';
-import localStorage from '../../localStorageHelpers';
+import localStorage from '../../localStorageHelper';
 
 class CryptoTable extends Component {
   // 60 secs refresh interval
@@ -33,8 +33,20 @@ class CryptoTable extends Component {
         // transform data to hold values retrieved from local storage.
         const entries = Object.values(data).reduce((accumulator, currentValue) => {
           const { id } = currentValue;
-          const inputValue = Number.parseFloat(localStorage.getInputValueForId(id));
-          const yourMoney = Number.isNaN(inputValue) ? 0 : inputValue * currentValue.price;
+          const { amountOfCurrency, oldCurrencyValue } = localStorage.getInputValueForId(id);
+
+          const maybeValidAmountOfCurrency = Number.parseFloat(amountOfCurrency);
+          let inputValue, yourMoney, moneyGain;
+
+          if (Number.isNaN(maybeValidAmountOfCurrency)) {
+            inputValue = '';
+            yourMoney = 0;
+            moneyGain = 0;
+          } else {
+            inputValue = maybeValidAmountOfCurrency;
+            yourMoney = inputValue * currentValue.price;
+            moneyGain = yourMoney - inputValue * oldCurrencyValue;
+          }
 
           accumulator[id] = {
             ...currentValue,
@@ -42,6 +54,7 @@ class CryptoTable extends Component {
             // instead omitted
             inputValue: inputValue || '',
             yourMoney,
+            moneyGain,
           };
 
           return accumulator;
@@ -93,12 +106,14 @@ class CryptoTable extends Component {
     event.preventDefault();
     const { name: id } = event.target;
     const { inputValue, price } = this.state.entries[id];
-    const multiplier = Number.parseFloat(inputValue);
 
-    const yourMoney = multiplier * price;
+    const amountOfCurrency = Number.parseFloat(inputValue);
+    const oldCurrencyValue = this.state.entries[id].price;
+
+    const yourMoney = amountOfCurrency * price;
 
     // store the current valid input value inside local storage
-    localStorage.storeIdAndInputValue(id, multiplier);
+    localStorage.storeIdAndInputValue(id, amountOfCurrency, oldCurrencyValue);
 
     this.setState(prevState => ({
       entries: {
@@ -107,6 +122,7 @@ class CryptoTable extends Component {
           ...prevState.entries[id],
           inputValue,
           yourMoney,
+          moneyGain: 0,
         },
       },
     }));
@@ -130,7 +146,7 @@ class CryptoTable extends Component {
 
   render() {
     if (this.state.error) {
-      return <Error error={this.state.error} />
+      return <Error error={this.state.error} />;
     }
 
     return (
