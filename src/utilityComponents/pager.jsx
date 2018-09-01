@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './pager.scss';
@@ -16,5 +16,11 @@ const Pager = ({ numberOfPages, activePage, pageChangeFunc }) => (
     ))}
   </div>
 );
+
+Pager.propTypes = {
+  numberOfPages: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  activePage: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  pageChangeFunc: PropTypes.func.isRequired,
+};
 
 export default Pager;
