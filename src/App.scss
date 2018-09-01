@@ -1,4 +1,4 @@
-@import "sharedStyles/colors";
+@import "colors";
 
 $font-stack: -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, "Segoe UI", "Google Sans", "Product Sans", Ubuntu, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
@@ -20,4 +20,5 @@ body {
   flex-direction: column;
   text-align: center;
   align-items: center;
+  min-width: 720px;
 }

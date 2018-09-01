@@ -1,10 +1,11 @@
-@import "../../sharedStyles/colors";
+@import "../../colors";
 
 .crypto-table {
   background-color: $light-gray;
   table-layout: fixed;
   font-size: 0.9em;
   border-collapse: collapse;
+  width: 80%;
   color: $text-color;
 
   caption {
