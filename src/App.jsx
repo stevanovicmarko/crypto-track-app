@@ -4,7 +4,7 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import history from './history';
 import CryptoTable from './features/cryptoTable';
-import Details from './features/details';
+import DetailsPage from './features/detailsPage';
 
 import './App.scss';
 
@@ -18,7 +18,7 @@ class App extends PureComponent {
       <Router history={history}>
         <Switch>
           <Route exact path="/:page" component={CryptoTable} />
-          <Route path="/details/:id" component={Details} />
+          <Route path="/details/:id" component={DetailsPage} />
           <Redirect from="/" exact to="/1" />
         </Switch>
       </Router>

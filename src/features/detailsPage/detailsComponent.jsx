@@ -3,13 +3,13 @@ import withLoader from '../../utilityComponents/loader';
 
 import './detailsComponent.scss';
 
-const Details = props => {
+const Details = ({details}) => {
   return (
         <div className="details-container">
           <table className="details-table">
             <caption>Currency details</caption>
             <tbody>
-              {Object.entries(props).map(([title, value]) => (
+              {Object.entries(details).map(([title, value]) => (
                 <tr key={title}>
                   <th>{title}</th>
                   <td>{value}</td>

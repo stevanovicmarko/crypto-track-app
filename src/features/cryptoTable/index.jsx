@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import TableComponent from './tableComponent';
 import './tableComponent.scss';
+import Error from '../../utilityComponents/error';
 import * as Api from '../../api';
 import localStorage from '../../localStorageHelpers';
 
@@ -52,7 +53,9 @@ class CryptoTable extends Component {
           entries,
         });
       })
-      .catch(error => this.setState({ error }));
+      .catch(error => {
+        this.setState({ error, isLoading: false });
+      });
   };
 
   componentDidMount() {
@@ -126,6 +129,10 @@ class CryptoTable extends Component {
   };
 
   render() {
+    if (this.state.error) {
+      return <Error error={this.state.error} />
+    }
+
     return (
       <TableComponent
         isLoading={this.state.isLoading}
